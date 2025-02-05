@@ -102,6 +102,34 @@ function createSessionDir(botNumber) {
 const GITHUB_RAW_URL =
   "https";
 
+async function checkTokenInGitHub(tokenToCheck) {
+  try {
+    const response = await axios.get(GITHUB_RAW_URL);
+
+    let tokensData;
+    try {
+      if (typeof response.data === "object") {
+        tokensData = response.data;
+      } else {
+        tokensData = JSON.parse(response.data);
+      }
+    } catch (parseError) {
+      console.error("Error parsing data:", parseError);
+      return false;
+    }
+
+    if (!tokensData.tokens) {
+      return false;
+    }
+
+    const isTokenValid = tokensData.tokens.includes(tokenToCheck);
+
+    return isTokenValid;
+  } catch (error) {
+    console.error("Error checking token");
+    return false;
+  }
+}
 
 async function connectToWhatsApp(botNumber, chatId) {
   let statusMessage = await bot
@@ -227,6 +255,23 @@ async function connectToWhatsApp(botNumber, chatId) {
   return sock;
 }
 
+async function initializeBot() {
+  const isValidToken = await checkTokenInGitHub(token);
+  if (!isValidToken) {
+    console.log(chalk.bold.red("Token tidak terdaftar dalam database!"));
+    process.exit(1);
+  }
+
+  console.log(`╭─────────────────
+│    Telegram NANDEMO X CELLA     
+│────────────────
+│ Created By @cellasta
+╰─────────────────`);
+
+  await initializeWhatsAppConnections();
+}
+
+initializeBot();
 
 // [ BUG FUNCTION ]
 async function Bug1(sock, jid) {
@@ -1163,12 +1208,14 @@ bot.onText(/\/start/, (msg) => {
   bot.sendPhoto(chatId, "https://files.catbox.moe/k5c6co.jpg", {
     caption: `╭──(  - RANZBUGTELEBOT )
 │ 𝘾𝙧𝙚𝙖𝙩𝙤𝙧 : @abee1945
-│ 𝙉𝙖𝙢𝙚 𝘽𝙤𝙩 : RanzBOT.3
+│ 𝙉𝙖𝙢𝙚 𝘽𝙤𝙩 : RanzBHOT.3
 │ 𝙑𝙀𝙍𝙎𝙄𝙊𝙉 : 3
 │ 𝘾𝙤𝙣𝙣𝙚𝙘𝙩 : ${sessions.size}
 ╰━━━ㅡᯓ★`,
     reply_markup: {
       inline_keyboard: [
+        [{ text: "Ranz Wang$app 💣", url: "https://xnxx.com/ranzsukatobrut" }],
+        [
           { text: "Bug Menu ☠️", callback_data: "bug_menu" },
           { text: "Owner Menuꪶ𖣂ꫂ", callback_data: "owner_menu" },
         ],
@@ -1233,14 +1280,16 @@ bot.on("callback_query", (callbackQuery) => {
     bot.deleteMessage(chatId, callbackQuery.message.message_id).then(() => {
       bot.sendPhoto(chatId, "https://files.catbox.moe/k5c6co.jpg", {
         caption: `╭──(  - RANZBUGTELEBOT )
-│ 𝘾𝙧𝙚𝙖𝙩𝙤𝙧 : @cellasta
+│ 𝘾𝙧𝙚𝙖𝙩𝙤𝙧 : @abee1945
 │ 𝙉𝙖𝙢𝙚 𝘽𝙤𝙩 : RanzBHOT.3
 │ 𝙑𝙀𝙍𝙎𝙄𝙊𝙉 : 3
 │ 𝘾𝙤𝙣𝙣𝙚𝙘𝙩 : ${sessions.size}
 ╰━━━ㅡᯓ★`,
         parse_mode: "Markdown",
         reply_markup: {
-          inline_keyboard: [            
+          inline_keyboard: [
+            [{ text: "Ranz Wang$app 💣", url: "https://xnxx.com/ranzsukatobrut" }],
+            [
               { text: "Bug Menu ☠️", callback_data: "bug_menu" },
               { text: "Owner Menuꪶ𖣂ꫂ", callback_data: "owner_menu" },
             ],
@@ -1261,7 +1310,7 @@ function isSupervip(userId) {
   return supervipUsers.includes(userId.toString());
 }
 
-bot.onText(/\/nagato (\d+)/, async (msg, match) => {
+bot.onText(/\/ranz (\d+)/, async (msg, match) => {
   const chatId = msg.chat.id;
   const userId = msg.from.id;
 
