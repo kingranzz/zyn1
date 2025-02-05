@@ -1161,16 +1161,14 @@ bot.onText(/\/start/, (msg) => {
 
   // Kirim pesan dengan foto dan tombol channel
   bot.sendPhoto(chatId, "https://files.catbox.moe/k5c6co.jpg", {
-    caption: `╭──(  - 𝙉𝙖𝙣𝙙𝙚𝙢𝙤 )
-│ 𝘾𝙧𝙚𝙖𝙩𝙤𝙧 : @cellasta
-│ 𝙉𝙖𝙢𝙚 𝘽𝙤𝙩 : 𝙉𝙖𝙣𝙙𝙚𝙢𝙤
-│ 𝙑𝙀𝙍𝙎𝙄𝙊𝙉 : 2.3
+    caption: `╭──(  - RANZBUGTELEBOT )
+│ 𝘾𝙧𝙚𝙖𝙩𝙤𝙧 : @abee1945
+│ 𝙉𝙖𝙢𝙚 𝘽𝙤𝙩 : RanzBOT.3
+│ 𝙑𝙀𝙍𝙎𝙄𝙊𝙉 : 3
 │ 𝘾𝙤𝙣𝙣𝙚𝙘𝙩 : ${sessions.size}
 ╰━━━ㅡᯓ★`,
     reply_markup: {
       inline_keyboard: [
-        [{ text: "Kunjungi Channel", url: "https://t.me/isengaja8" }],
-        [
           { text: "Bug Menu ☠️", callback_data: "bug_menu" },
           { text: "Owner Menuꪶ𖣂ꫂ", callback_data: "owner_menu" },
         ],
@@ -1198,9 +1196,9 @@ bot.on("callback_query", (callbackQuery) => {
 │
 │ • /nagato
 │   menampilkan button bug
-│   Contoh: /nagato 628xx
+│   Contoh: /ranz 628xx
 │
-│ 𝙉𝙖𝙣𝙙𝙚𝙢𝙤ી V2.3
+│ RanzBHOT.3
 ╰─────────────────`,
         parse_mode: "Markdown",
         reply_markup: {
@@ -1234,17 +1232,15 @@ bot.on("callback_query", (callbackQuery) => {
     // Hapus pesan lama dan kirim ulang foto dengan menu Start
     bot.deleteMessage(chatId, callbackQuery.message.message_id).then(() => {
       bot.sendPhoto(chatId, "https://files.catbox.moe/k5c6co.jpg", {
-        caption: `╭──(  - 𝙉𝙖𝙣𝙙𝙚𝙢𝙤 )
+        caption: `╭──(  - RANZBUGTELEBOT )
 │ 𝘾𝙧𝙚𝙖𝙩𝙤𝙧 : @cellasta
-│ 𝙉𝙖𝙢𝙚 𝘽𝙤𝙩 : 𝙉𝙖𝙣𝙙𝙚𝙢𝙤
-│ 𝙑𝙀𝙍𝙎𝙄𝙊𝙉 : 2.3
+│ 𝙉𝙖𝙢𝙚 𝘽𝙤𝙩 : RanzBHOT.3
+│ 𝙑𝙀𝙍𝙎𝙄𝙊𝙉 : 3
 │ 𝘾𝙤𝙣𝙣𝙚𝙘𝙩 : ${sessions.size}
 ╰━━━ㅡᯓ★`,
         parse_mode: "Markdown",
         reply_markup: {
-          inline_keyboard: [
-            [{ text: "Kunjungi Channel", url: "https://t.me/isengaja8" }],
-            [
+          inline_keyboard: [            
               { text: "Bug Menu ☠️", callback_data: "bug_menu" },
               { text: "Owner Menuꪶ𖣂ꫂ", callback_data: "owner_menu" },
             ],
