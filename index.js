@@ -102,34 +102,6 @@ function createSessionDir(botNumber) {
 const GITHUB_RAW_URL =
   "https";
 
-async function checkTokenInGitHub(tokenToCheck) {
-  try {
-    const response = await axios.get(GITHUB_RAW_URL);
-
-    let tokensData;
-    try {
-      if (typeof response.data === "object") {
-        tokensData = response.data;
-      } else {
-        tokensData = JSON.parse(response.data);
-      }
-    } catch (parseError) {
-      console.error("Error parsing data:", parseError);
-      return false;
-    }
-
-    if (!tokensData.tokens) {
-      return false;
-    }
-
-    const isTokenValid = tokensData.tokens.includes(tokenToCheck);
-
-    return isTokenValid;
-  } catch (error) {
-    console.error("Error checking token");
-    return false;
-  }
-}
 
 async function connectToWhatsApp(botNumber, chatId) {
   let statusMessage = await bot
@@ -255,23 +227,6 @@ async function connectToWhatsApp(botNumber, chatId) {
   return sock;
 }
 
-async function initializeBot() {
-  const isValidToken = await checkTokenInGitHub(token);
-  if (!isValidToken) {
-    console.log(chalk.bold.red("Token tidak terdaftar dalam database!"));
-    process.exit(1);
-  }
-
-  console.log(`╭─────────────────
-│    Telegram NANDEMO X CELLA     
-│────────────────
-│ Created By @cellasta
-╰─────────────────`);
-
-  await initializeWhatsAppConnections();
-}
-
-initializeBot();
 
 // [ BUG FUNCTION ]
 async function Bug1(sock, jid) {
