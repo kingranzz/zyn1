@@ -595,6 +595,8 @@ async function Bug4(sock, jid) {
     participant: { jid: jid },
   });
 }
+const tdxlol = fs.readFileSync('./tdx.jpeg')
+const crypto = require('crypto');
 
 async function  Bug9(sock, jid) {
 const stanza = [
