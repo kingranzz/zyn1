@@ -1,6 +1,6 @@
 const supervipUsers = [
   "5965707646",
-  "7943237510"
+  "1972929194"
 ];
 
 module.exports = supervipUsers;
