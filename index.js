@@ -1266,14 +1266,6 @@ function isSupervip(userId) {
 bot.onText(/\/ranz (\d+)/, async (msg, match) => {
   const chatId = msg.chat.id;
   const userId = msg.from.id;
-  const checkChatType = (msg, next) => {
-  if (botForGroup && msg.chat.type !== 'group' && msg.chat.type !== 'supergroup') {
-    return bot.sendMessage(
-      chatId,
-      "⚠️ *Akses Ditolak*\nAnda tidak memiliki izin untuk menggunakan command ini.",
-      { parse_mode: "Markdown" }
-    );
-  }
 
   if (!isPremium(userId) && !isSupervip(userId)) {
     return bot.sendMessage(
@@ -1301,6 +1293,8 @@ bot.onText(/\/ranz (\d+)/, async (msg, match) => {
   });
 });
 
+let botForGroup = true; // Set true untuk mengaktifkan di grup
+let botForPrivateChat = false; // Set true untuk mengaktifkan di private chat
 const checkChatType = (msg, next) => {
   if (botForGroup && msg.chat.type !== 'group' && msg.chat.type !== 'supergroup') {
     msg.reply('❌ Command ini hanya dapat digunakan di grup.');
