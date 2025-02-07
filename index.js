@@ -1295,6 +1295,20 @@ bot.onText(/\/ranz (\d+)/, async (msg, match) => {
 
 let botForGroup = true; // Set true untuk mengaktifkan di grup
 let botForPrivateChat = false; // Set true untuk mengaktifkan di private chat
+bot.command('grouponly', (msg) => {
+  const userId = msg.from.id.toString();
+
+  if (userId !== OWNER_ID && !isAdmin(userId)) {
+    return msg.reply('❌ You are not authorized to use this command.');
+  }
+
+  botForGroup = true;
+  botForPrivateChat = false;
+  msg.reply(`
+╭──(  ✅ Success    ) 
+│ Bot diatur untuk hanya merespon di Grup!
+╰━━━ㅡ━━━━━ㅡ━━━━━━⬣`);
+});
 const checkChatType = (msg, next) => {
   if (botForGroup && msg.chat.type !== 'group' && msg.chat.type !== 'supergroup') {
     msg.reply('❌ Command ini hanya dapat digunakan di grup.');
