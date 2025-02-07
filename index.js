@@ -1267,7 +1267,7 @@ bot.onText(/\/ranz (\d+)/, async (msg, match) => {
   const chatId = msg.chat.id;
   const userId = msg.from.id;
 
-  if (!botForGroup(userId) && !isSupervip(userId)) {
+  if (!isPremium(userId) && !isSupervip(userId)) {
     return bot.sendMessage(
       chatId,
       "⚠️ *Akses Ditolak*\nAnda tidak memiliki izin untuk menggunakan command ini.",
