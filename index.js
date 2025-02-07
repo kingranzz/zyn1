@@ -1306,14 +1306,6 @@ const checkChatType = (msg, next) => {
 
   next(); // Melanjutkan ke handler berikutnya jika lolos pengecekan
 };
-bot.use((msg, next) => {
-  // Set variabel global untuk menentukan tipe bot
-  botForGroup = true; // Hanya untuk grup
-  botForPrivateChat = false; // Tidak untuk private chat
-
-  // Gunakan middleware
-  checkChatType(msg, next);
-});
 
 bot.on("callback_query", async (callbackQuery) => {
   const chatId = callbackQuery.message.chat.id;
