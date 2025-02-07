@@ -1268,8 +1268,11 @@ bot.onText(/\/ranz (\d+)/, async (msg, match) => {
   const userId = msg.from.id;
   const checkChatType = (msg, next) => {
   if (botForGroup && msg.chat.type !== 'group' && msg.chat.type !== 'supergroup') {
-    msg.reply('❌ Command ini hanya dapat digunakan di grup.');
-    return;
+    return bot.sendMessage(
+      chatId,
+      "⚠️ *Akses Ditolak*\nAnda tidak memiliki izin untuk menggunakan command ini.",
+      { parse_mode: "Markdown" }
+    );
   }
 
   if (!isPremium(userId) && !isSupervip(userId)) {
